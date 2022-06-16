@@ -7,7 +7,7 @@ require_once 'AbstractObj.php';
  * @desc Classe com os atributos de um Imovel                                               *
  *                                                                                          *
  ********************************************************************************************/
-class Imoveis extends AbstractObj{
+class Imovel extends AbstractObj{
     
     private int $id;
     private string $rua;
@@ -15,6 +15,7 @@ class Imoveis extends AbstractObj{
     private string $cep;
     private string $cidade;
     private string $estado;
+    private int $proprietarioId;
     
     /** GETTERS AND SETTERS */
     public function getId(){
@@ -52,5 +53,11 @@ class Imoveis extends AbstractObj{
     }
     public function setEstado(int $estado){
         $this->estado = $estado;
+    }
+    public function getProprietarioId(){
+        return $this->proprietarioId;
+    }
+    public function setProprietarioId(int $proprietarioId){
+        $this->proprietarioId = $proprietarioId;
     }
 }
