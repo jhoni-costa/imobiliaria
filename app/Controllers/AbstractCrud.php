@@ -1,6 +1,12 @@
 <?php
 require_once '../Database/Connection.php';
-
+/********************************************************************************************
+ * @author Jhoni Costa <jhonirsc@gmail.com>                                                 *
+ * @git https://github.com/jhoni-costa                                                      *
+ * @since 17/06/2022                                                                        *
+ * @desc Classe mãe que realiza interações com banco de dados (CRUD)                        *
+ *                                                                                          *
+ ********************************************************************************************/
 class AbstractCrud extends Connection{
 
     protected $tableName;
@@ -13,7 +19,12 @@ class AbstractCrud extends Connection{
         $campos = substr($campos,0,-1);
         $valores = substr($valores,0,-1);
         $insert = "insert into {$this->tableName} ({$campos})values({$valores});";
-        return $this->con->mysqli_query($insert);
+        try {
+            return $this->con->mysqli_query($insert);
+        } catch (\Throwable $th) {
+            return $tr;
+        }
+        
     }
 
     public function update(array $data, $where){
