@@ -13,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `imobiliaria`.`tb_cliente`
   PRIMARY KEY
 (`id`));
 
-/* Cria a Tabela de clientes */
+/* Cria a Tabela de proprietario */
 CREATE TABLE IF NOT EXISTS `imobiliaria`.`tb_proprietario`
 (`id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR (255) NOT NULL,

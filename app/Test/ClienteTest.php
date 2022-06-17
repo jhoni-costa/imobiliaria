@@ -19,7 +19,7 @@ class ClienteTeste implements AbstractTest{
     }
 
     public function testSelect($id){
-        $cliente = $this->controller->getCliente($id);
+        $cliente = $this->controller->get($id);
         if($cliente instanceof Cliente){
             echo "Teste select  Cliente concluido!";
             $this->con->p($cliente);
@@ -50,7 +50,7 @@ class ClienteTeste implements AbstractTest{
    
     public function testDelete($id){
         $this->controller->delete($id);
-        $cliente = $this->controller->getCliente($id);
+        $cliente = $this->controller->get($id);
         if(!$cliente instanceof Cliente){
             echo "Registro deletado com sucesso!";
         }

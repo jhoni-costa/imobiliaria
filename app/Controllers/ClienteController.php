@@ -22,7 +22,7 @@ class ClienteController extends AbstractCrud{
         return parent::insert($arrayCliente);
     }
 
-    public function getCliente($id){
+    public function get($id){
         $query = "select * from {$this->tableName} where id = {$id}";
         $arrCliente = $this->fetchRow($query);
         $cliente = new Cliente();
@@ -45,6 +45,6 @@ class ClienteController extends AbstractCrud{
     }
 
     public function delete($id){
-        parrent::delete($id);
+        parrent::delete("id = {$id}");
     }
 }
