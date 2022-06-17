@@ -37,21 +37,21 @@ class AbstractCrud extends Connection{
         }
         $update = substr($update,0,-1);
         $update .= "where {$where}";
-        return $this->con->mysqli_query($insert);
+        return $this->con->query($update);
     }
 
     public function delete($where){
-        $delete = "delete from {$this->dbName} where {$where}";
-        return $this->con->mysqli_query($delete);
+        $delete = "delete from {$this->tableName} where {$where}";
+        return $this->con->query($delete);
     }
     
     public function fetchRow($selectSql){
-        $result = $this->con->mysqli_query($selectSql);
+        $result = $this->con->query($selectSql);
         return mysqli_fetch_assoc($result);
     }
 
     public function fetchAll($selectSql){
-        $result = $this->con->mysqli_query($selectSql);
+        $result = $this->con->query($selectSql);
         $arrayRet = [];
         while($data = mysqli_fetch_array($result)){
             $arrayRet[] = $data;

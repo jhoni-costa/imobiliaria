@@ -18,7 +18,7 @@ class Pessoa extends AbstractObj{
 
     /** GETTERS AND SETTERS */
     public function getId(): int{
-        return $this->id;
+        return (int) $this->id;
     }
     public function setId(int $id){
         $this->id = $id;

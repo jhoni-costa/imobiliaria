@@ -10,7 +10,7 @@ interface AbstractTest{
     
     public function testSelect($id);
     public function testInsert($entity);
-    public function testUpdate($id);
+    public function testUpdate($entity);
     public function testDelete($id);
 
 }

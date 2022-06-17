@@ -21,11 +21,11 @@ class ClienteTest implements AbstractTest{
     }
 
     public function testSelect($id){
-        // $cliente = $this->controller->get($id);
-        // if($cliente instanceof Cliente){
-        //     echo "Teste select Cliente concluido!";
-        //     $this->con->p($cliente);
-        // }
+        $cliente = $this->controller->get($id);
+        if($cliente instanceof Cliente){
+            echo "Teste select Cliente concluido!";
+            $this->controller->p($cliente);
+        }
     }
 
     public function testInsert($cliente){
@@ -45,19 +45,16 @@ class ClienteTest implements AbstractTest{
 
     }
     
-    public function testUpdate($id){
-        // $pessoa = $this->controller->getCliente($id);
-        // $pessoa->setNome('Jéssica G. da Costa');
-        // $pessoa->setEmail('jessica@emailteste.com');
-        // $controller->update($pessoa);
+    public function testUpdate($pessoa){
+        $this->controller->update($pessoa);
     }
    
     public function testDelete($id){
-        // $this->controller->delete($id);
-        // $cliente = $this->controller->get($id);
-        // if(!$cliente instanceof Cliente){
-        //     echo "Registro deletado com sucesso!";
-        // }
+        $this->controller->delete($id);
+        $cliente = $this->controller->get($id);
+        if(!$cliente instanceof Cliente){
+            echo "Registro deletado com sucesso!";
+        }
     }
     
 }
