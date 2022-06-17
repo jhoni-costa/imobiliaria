@@ -1,5 +1,5 @@
 <?php
-require_once '../Models/Pessoa.php';
+require_once '../Models/Cliente.php';
 require_once 'AbstractCrud.php';
 
 class ClienteController extends AbstractCrud{
