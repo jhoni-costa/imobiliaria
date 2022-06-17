@@ -8,11 +8,11 @@ class Connection{
 
     private $con;
 
-    function __construct($hostname, $username, $password = "", $dbname){
-        $this->hostname = $hostname;
-        $this->username = $username;
-        $this->password = $password;
-        $this->dbname = $dbname;
+    function __construct(){
+        $this->hostname = 'localhost';
+        $this->username = 'root';
+        $this->password = '';
+        $this->dbname = 'imobiliaria';
 
         $this->con = mysqli_connect($this->hostname, $this->username, $this->password, $this->dbname);
         if(!$this->con){

@@ -10,32 +10,32 @@ require_once "AbstractObj.php";
 
 class Pessoa extends AbstractObj{
 
-    protected int $id;
-    protected string $nome;
-    protected string $email;
-    protected string $telefone;
-    protected boolean $flagAtivo;
+    protected $id;
+    protected $nome;
+    protected $email;
+    protected $telefone;
+    protected $flagAtivo;
 
     /** GETTERS AND SETTERS */
-    public function getId(){
+    public function getId(): int{
         return $this->id;
     }
     public function setId(int $id){
         $this->id = $id;
     }
-    public function getNome(){
+    public function getNome(): string{
         return $this->nome;
     }
     public function setNome(string $nome){
         $this->nome = $nome;
     }
-    public function getEmail(){
+    public function getEmail(): string{
         return $this->email;
     }
     public function setEmail(string $email){
         $this->email = $email;
     }
-    public function getTelefone(){
+    public function getTelefone(): string{
         return $this->telefone;
     }
     public function setTelefone(string $telefone){

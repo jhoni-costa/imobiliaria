@@ -9,37 +9,37 @@ require_once 'AbstractObj.php';
  ********************************************************************************************/
 class Contrato extends AbstractObj{
 
-    private int $id;
-    private int $imovelId;
-    private int $clienteId;
-    private int $proprietarioId;
-    private date $dataInicio;
-    private date $dataFim;
-    private float $taxaAdmistracao;
-    private float $valorAluguel;
-    private float $valorCondominio;
-    private float $valorIPTU;
+    private $id;
+    private $imovelId;
+    private $clienteId;
+    private $proprietarioId;
+    private $dataInicio;
+    private $dataFim;
+    private $taxaAdmistracao;
+    private $valorAluguel;
+    private $valorCondominio;
+    private $valorIPTU;
 
      /** GETTERS AND SETTERS */
-    public function getId(){
+    public function getId(): int{
         return $this->id;
     }
     public function setId(int $id){
         $this->id = $id;
     }
-    public function getImovelId(){
+    public function getImovelId(): int{
         return $this->imovelId;
     }
     public function setImovelId(int $imovelId){
         $this->imovelId = $imovelId;
     }
-    public function getClienteId(){
+    public function getClienteId(): int{
         return $this->clienteId;
     }
     public function setClienteId(int $clienteId){
         $this->clienteId = $clienteId;
     }
-    public function getProprietarioId(){
+    public function getProprietarioId(): int{
         return $this->proprietarioId;
     }
     public function setProprietarioId(int $proprietarioId){
