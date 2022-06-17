@@ -1,4 +1,6 @@
 <?php 
+ini_set('display_errors', 'on');
+error_reporting(-1);
 
 require_once "../Controllers/ClienteController.php";
 require_once "AbstractTest.php";
@@ -10,30 +12,31 @@ require_once "AbstractTest.php";
  * @desc Classe de testes da entidade Cliente                                               *
  *                                                                                          *
  ********************************************************************************************/
-class ClienteTeste implements AbstractTest{
+class ClienteTest implements AbstractTest{
 
     private $controller;
 
-    public __construct(){
+    public function __construct(){
         $this->controller = new ClienteController();
     }
 
     public function testSelect($id){
-        $cliente = $this->controller->get($id);
-        if($cliente instanceof Cliente){
-            echo "Teste select  Cliente concluido!";
-            $this->con->p($cliente);
-        }
+        // $cliente = $this->controller->get($id);
+        // if($cliente instanceof Cliente){
+        //     echo "Teste select Cliente concluido!";
+        //     $this->con->p($cliente);
+        // }
     }
 
-    public function testInsert(){
-        $cliente = new Cliente();
-        $cliente->setNome("Jéssica Gerzewski");
-        $cliente->setEmail("jessicagerzewski@gmail.com");
-        $cliente->setTelefone("41999990000");
-        $cliente->setFlagAtivo(true);
+    public function testInsert($cliente){
+        $arrayNew = [
+            "nome" => $cliente->getNome(),
+            "email"=> $cliente->getEmail(),
+            'telefone'=> $cliente->getTelefone(),
+            "flag_ativo" => $cliente->getFlagAtivo()
+        ];
         
-        $id = $this->controller->insert($cliente);
+        $id = $this->controller->insert($arrayNew);
         if($id > 0){
             echo "Cliente inserido com sucesso!!<br>Id:{$id}";
         }else{
@@ -41,18 +44,20 @@ class ClienteTeste implements AbstractTest{
         }
 
     }
+    
     public function testUpdate($id){
-        $pessoa = $this->controller->getCliente($id);
-        $pessoa->setNome('Jéssica G. da Costa');
-        $pessoa->setEmail('jessica@emailteste.com');
-        $controller->update($pessoa);
+        // $pessoa = $this->controller->getCliente($id);
+        // $pessoa->setNome('Jéssica G. da Costa');
+        // $pessoa->setEmail('jessica@emailteste.com');
+        // $controller->update($pessoa);
     }
    
     public function testDelete($id){
-        $this->controller->delete($id);
-        $cliente = $this->controller->get($id);
-        if(!$cliente instanceof Cliente){
-            echo "Registro deletado com sucesso!";
-        }
+        // $this->controller->delete($id);
+        // $cliente = $this->controller->get($id);
+        // if(!$cliente instanceof Cliente){
+        //     echo "Registro deletado com sucesso!";
+        // }
     }
+    
 }

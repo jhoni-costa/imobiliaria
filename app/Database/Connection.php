@@ -6,12 +6,12 @@ class Connection{
     private $password;
     private $dbname;
 
-    private $con;
+    protected $con;
 
     function __construct(){
         $this->hostname = 'localhost';
         $this->username = 'root';
-        $this->password = '';
+        $this->password = 'Senha@123';
         $this->dbname = 'imobiliaria';
 
         $this->con = mysqli_connect($this->hostname, $this->username, $this->password, $this->dbname);

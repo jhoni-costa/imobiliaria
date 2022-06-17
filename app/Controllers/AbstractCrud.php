@@ -12,17 +12,20 @@ class AbstractCrud extends Connection{
     protected $tableName;
 
     public function insert(array $data){
+        $campos = "";
+        $valores = "";
         foreach($data as $key => $value){
-            $campos = $key . ",";
-            $valores = $value . ",";
+            $campos .= $key . ",";
+            $valores .="'{$value}',";
         }
         $campos = substr($campos,0,-1);
         $valores = substr($valores,0,-1);
         $insert = "insert into {$this->tableName} ({$campos})values({$valores});";
         try {
-            return $this->con->mysqli_query($insert);
-        } catch (\Throwable $th) {
-            return $tr;
+            return $this->con->query($insert);
+        } catch (Throwable $th) {
+            echo mysqli_error($this->con);
+            return;
         }
         
     }

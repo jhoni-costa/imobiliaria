@@ -13,13 +13,15 @@ class ClienteController extends AbstractCrud{
     protected $tableName = "tb_cliente";
 
     public function insert($cliente){
-        $arrayCliente = [
-            "nome" => $cliente->getNome(),
-            "email" => $cliente->getEmail(),
-            "telefone"=> $cliente->getTelefone(),
-            "flag_ativo" => $cliente->getFlagAtivo()
-        ];
-        return parent::insert($arrayCliente);
+        // var_dump($cliente);
+        // $arrayCliente = [
+        //     "nome" => $cliente->getNome(),
+        //     "email" => $cliente->getEmail(),
+        //     "telefone"=> $cliente->getTelefone(),
+        //     "flag_ativo" => $cliente->getFlagAtivo()
+        // ];
+        
+        return parent::insert($cliente);
     }
 
     public function get($id){
@@ -34,14 +36,14 @@ class ClienteController extends AbstractCrud{
         return $cliente;
     }
 
-    public function update($pessoa){
+    public function update($pessoa, $where = ""){
         $arrayCliente = [
             "nome" => $cliente->getNome(),
             "email" => $cliente->getEmail(),
             "telefone"=> $cliente->getTelefone(),
             "flag_ativo" => $cliente->getFlagAtivo()
         ];
-        return parent::update($arrayCliente);
+        return parent::update($arrayCliente, "id = {$pessoa->getId()}");
     }
 
     public function delete($id){
