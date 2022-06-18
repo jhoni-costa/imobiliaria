@@ -9,55 +9,55 @@ require_once 'AbstractObj.php';
  ********************************************************************************************/
 class Imovel extends AbstractObj{
     
-    private int $id;
-    private string $rua;
-    private string $numero;
-    private string $cep;
-    private string $cidade;
-    private string $estado;
-    private int $proprietarioId;
+    private $id;
+    private $rua;
+    private $numero;
+    private $cep;
+    private $cidade;
+    private $estado;
+    private $proprietarioId;
     
     /** GETTERS AND SETTERS */
     public function getId(){
         return $this->id;
     }
-    public function setId(int $id){
+    public function setId($id){
         $this->id = $id;
     }
     public function getRua(){
         return $this->rua;
     }
-    public function setRua(int $rua){
+    public function setRua($rua){
         $this->rua = $rua;
     }
     public function getNumero(){
         return $this->numero;
     }
-    public function setNumero(int $numero){
+    public function setNumero($numero){
         $this->numero = $numero;
     }
     public function getCep(){
         return $this->cep;
     }
-    public function setCep(int $cep){
+    public function setCep($cep){
         $this->cep = $cep;
     }
     public function getCidade(){
         return $this->cidade;
     }
-    public function setCidade(int $cidade){
+    public function setCidade($cidade){
         $this->cidade = $cidade;
     }
     public function getEstado(){
         return $this->estado;
     }
-    public function setEstado(int $estado){
+    public function setEstado($estado){
         $this->estado = $estado;
     }
     public function getProprietarioId(){
         return $this->proprietarioId;
     }
-    public function setProprietarioId(int $proprietarioId){
+    public function setProprietarioId($proprietarioId){
         $this->proprietarioId = $proprietarioId;
     }
 }
