@@ -5,6 +5,6 @@
         <script type='text/javascript' src='./app/Resources/js/bootstrap.min.js'></script>
     </head>
     <body>
-        <h2>OLÁ</h2>
+        <?php include 'util/navbar.php' ?>
     </body>
 </html>

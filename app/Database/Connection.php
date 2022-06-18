@@ -11,7 +11,7 @@ class Connection{
     function __construct(){
         $this->hostname = 'localhost';
         $this->username = 'root';
-        if($_SERVER['SystemRoot'] == "C:\WINDOWS"){
+        if(@$_SERVER['SystemRoot'] == "C:\WINDOWS"){
             $this->password = '';
         }else{
             $this->password = 'Senha@123';

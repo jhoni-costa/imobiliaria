@@ -1,5 +1,5 @@
 <?php
-require_once '../Database/Connection.php';
+require_once '../app/Database/Connection.php';
 /********************************************************************************************
  * @author Jhoni Costa <jhonirsc@gmail.com>                                                 *
  * @git https://github.com/jhoni-costa                                                      *
@@ -11,7 +11,8 @@ class AbstractCrud extends Connection{
 
     protected $tableName;
 
-    public function insert(array $data){
+    public function insert($data){
+        
         $campos = "";
         $valores = "";
         foreach($data as $key => $value){
@@ -21,7 +22,7 @@ class AbstractCrud extends Connection{
         $campos = substr($campos,0,-1);
         $valores = substr($valores,0,-1);
         $insert = "insert into {$this->tableName} ({$campos})values({$valores});";
-        //$this->p($insert);
+        $this->pe($insert);
         try {
             $this->con->query($insert);
             return $this->con->insert_id;
@@ -69,5 +70,11 @@ class AbstractCrud extends Connection{
     public function pe($param){
         $this->p($param);
         die();
+    }
+
+    public function msg_alert($string){
+        echo "<script>";
+        echo "alert('{$string}')";
+        echo "</script>";
     }
 }

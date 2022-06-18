@@ -1,5 +1,5 @@
 <?php
-require_once '../Models/Cliente.php';
+require_once '../app/Models/Cliente.php';
 require_once 'AbstractCrud.php';
 /********************************************************************************************
  * @author Jhoni Costa <jhonirsc@gmail.com>                                                 *
@@ -12,7 +12,7 @@ class ClienteController extends AbstractCrud{
     
     protected $tableName = "tb_cliente";
 
-    public function insert($cliente){       
+    public function insert($cliente){     
         return parent::insert($cliente);
     }
 
