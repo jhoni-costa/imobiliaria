@@ -20,31 +20,31 @@ class Pessoa extends AbstractObj{
     public function getId(): int{
         return (int) $this->id;
     }
-    public function setId(int $id){
+    public function setId($id){
         $this->id = $id;
     }
     public function getNome(): string{
-        return $this->nome;
+        return (string) $this->nome;
     }
-    public function setNome(string $nome){
+    public function setNome($nome){
         $this->nome = $nome;
     }
     public function getEmail(): string{
-        return $this->email;
+        return (string) $this->email;
     }
-    public function setEmail(string $email){
+    public function setEmail($email){
         $this->email = $email;
     }
     public function getTelefone(): string{
-        return $this->telefone;
+        return (string) $this->telefone;
     }
-    public function setTelefone(string $telefone){
+    public function setTelefone($telefone){
         $this->telefone = $telefone;
     }
     public function getFlagAtivo(){
         return $this->flagAtivo;
     }
-    public function setFlagAtivo(string $flagAtivo){
+    public function setFlagAtivo($flagAtivo){
         $this->flagAtivo = $flagAtivo;
     }
     

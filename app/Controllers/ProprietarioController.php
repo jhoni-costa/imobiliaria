@@ -8,19 +8,12 @@ require_once 'AbstractCrud.php';
  * @desc Controller da entidade Proprietario                                                *
  *                                                                                          *
  ********************************************************************************************/
-class ProrietarioController extends AbstractCrud{
+class ProprietarioController extends AbstractCrud{
     
     protected $tableName = "tb_proprietario";
 
     public function insert($proprietario){
-        $arrayProprietario = [
-            "nome" => $proprietario->getNome(),
-            "email" => $proprietario->getEmail(),
-            "telefone"=> $proprietario->getTelefone(),
-            "flag_ativo" => $proprietario->getFlagAtivo(),
-            "dia_repasse" => $proprietario->getDiaRepasse()
-        ];
-        return parent::insert($arrayProprietario);
+        return parent::insert($proprietario);
     }
 
     public function get($id){
@@ -31,11 +24,12 @@ class ProrietarioController extends AbstractCrud{
         $proprietario->setNome($arrayProprietario['nome']);
         $proprietario->setEmail($arrayProprietario['email']);
         $proprietario->setTelefone($arrayProprietario['telefone']);
+        $proprietario->setDiaRepasse($arrayProprietario['dia_repasse']);
         $proprietario->setFlagAtivo($arrayProprietario['flag_ativo']);
         return $proprietario;
     }
 
-    public function update($proprietario){
+    public function update($proprietario, $where = ""){
         $arrayProprietario = [
             "nome" => $proprietario->getNome(),
             "email" => $proprietario->getEmail(),
@@ -43,10 +37,10 @@ class ProrietarioController extends AbstractCrud{
             "flag_ativo" => $proprietario->getFlagAtivo(),
             "dia_repasse" => $proprietario->getDiaRepasse()
         ];
-        return parent::update($arrayProprietario);
+        return parent::update($arrayProprietario, "id = {$proprietario->getId()}");
     }
 
     public function delete($id){
-        parrent::delete("id = {$id}");
+        parent::delete("id = {$id}");
     }
 }

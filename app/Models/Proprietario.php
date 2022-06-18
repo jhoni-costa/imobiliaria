@@ -1,7 +1,7 @@
 <?php
 require_once 'Pessoa.php';
 
-class Proprietairio extends Pessoa{
+class Proprietario extends Pessoa{
 
     private $diaRepasse;
 

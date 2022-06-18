@@ -23,8 +23,9 @@ class ClienteTest implements AbstractTest{
     public function testSelect($id){
         $cliente = $this->controller->get($id);
         if($cliente instanceof Cliente){
-            echo "Teste select Cliente concluido!";
+            echo "Teste select Cliente concluido!<br>";
             $this->controller->p($cliente);
+            echo "<hr>";
         }
     }
 
@@ -38,9 +39,9 @@ class ClienteTest implements AbstractTest{
         
         $id = $this->controller->insert($arrayNew);
         if($id > 0){
-            echo "Cliente inserido com sucesso!!<br>Id:{$id}";
+            echo "Cliente inserido com sucesso!!<br>Id:{$id}<hr>";
         }else{
-            echo "Erro ao inserir, revise seu código";
+            echo "Erro ao inserir, revise seu código<hr>";
         }
 
     }
@@ -53,7 +54,7 @@ class ClienteTest implements AbstractTest{
         $this->controller->delete($id);
         $cliente = $this->controller->get($id);
         if(!$cliente instanceof Cliente){
-            echo "Registro deletado com sucesso!";
+            echo "Registro deletado com sucesso!<br>";
         }
     }
     

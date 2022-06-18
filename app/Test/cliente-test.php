@@ -1,4 +1,3 @@
-
 <pre>
 <?php
 ini_set('display_errors', 'on');
@@ -19,8 +18,16 @@ $cliente->setFlagAtivo(true);
 
 $testCliente->testInsert($cliente);
 
+$cliente2 = new Cliente();
+$cliente2->setNome("Jhoni Costa");
+$cliente2->setEmail("jrs@gmail.com");
+$cliente2->setTelefone("41999990000");
+$cliente2->setFlagAtivo(true);
+
+$testCliente->testInsert($cliente2);
+
 // Teste get
-$testCliente->testSelect(1);
+$testCliente->testSelect(2);
 
 // Teste Update
 $cliente1 = $controller->get(1);
