@@ -22,14 +22,15 @@
                             <input type="text" name='telefone' required class="form-control" id="telefone" placeholder="(41) 99999-9999">
                         </div>
                         <div class="mb-3">
-                            <label for="flag-ativo" class="form-label">Ativo:</label>
-                            <select class="form-select" required name='flag-ativo' id='flag-ativo'>
+                            <label for="flag_ativo" class="form-label">Ativo:</label>
+                            <select class="form-select" required name='flag_ativo' id='flag_ativo'>
                                 <option value="0">Inativo</option>    
                                 <option selected value="1">Ativo</option>    
                             </select>
                         </div>
                         <div class="mb-3">
-                            <button type="submit" class='btn btn-primary'>Cadastrar</button>
+                            <button type="submit" class='btn btn-primary btn-sm'>Cadastrar</button>
+                            <button type="button" class='btn btn-warning btn-sm' onclick='voltar()'>Voltar</button>
                         </div>
                     </form>
                 </div>
@@ -37,3 +38,8 @@
         </div>
     </body>
 </html>
+<script>
+    voltar = () => {
+        window.location.href = 'index.php';
+    }
+</script>

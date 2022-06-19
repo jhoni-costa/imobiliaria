@@ -11,7 +11,7 @@ class AbstractCrud extends Connection{
 
     protected $tableName;
 
-    public function insert($data){
+    public function insert(array $data){
         
         $campos = "";
         $valores = "";
@@ -22,7 +22,7 @@ class AbstractCrud extends Connection{
         $campos = substr($campos,0,-1);
         $valores = substr($valores,0,-1);
         $insert = "insert into {$this->tableName} ({$campos})values({$valores});";
-        $this->pe($insert);
+        // $this->pe($insert);
         try {
             $this->con->query($insert);
             return $this->con->insert_id;
