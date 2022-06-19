@@ -55,13 +55,15 @@ class AbstractCrud extends Connection{
 
     public function fetchAll($selectSql){
         $result = $this->con->query($selectSql);
+        // $this->pe($selectSql);
         $arrayRet = [];
-        while($data = mysqli_fetch_array($result)){
+        while($data = mysqli_fetch_assoc($result)){
             $arrayRet[] = $data;
         }
         return $arrayRet;
     }
-     public function p($param){
+
+    public function p($param){
         echo "<pre>";
         print_r($param);
         echo "</pre>";
@@ -76,5 +78,9 @@ class AbstractCrud extends Connection{
         echo "<script>";
         echo "alert('{$string}')";
         echo "</script>";
+    }
+
+    public function getEstados(){
+        return $this->fetchAll('select * from tb_estados');
     }
 }

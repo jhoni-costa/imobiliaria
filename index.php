@@ -13,9 +13,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                    <a class="nav-link" href="clientes/">Clientes</a>
+                    <a class="nav-link" href="clientes">Clientes</a>
                     <a class="nav-link" href="proprietarios">Proprietários</a>
-                    <a class="nav-link" href="#">Imoveis</a>
+                    <a class="nav-link" href="imoveis">Imóveis</a>
                 </div>
                 </div>
             </div>

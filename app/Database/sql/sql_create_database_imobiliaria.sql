@@ -71,3 +71,39 @@ CREATE TABLE `imobiliaria`.`tb_contrato` (
     REFERENCES `imobiliaria`.`tb_proprietario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
+
+/* Cria tabela auxiliar de estados*/
+CREATE TABLE `imobiliaria`.`tb_estados`
+(`id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NULL,
+  `uf` VARCHAR (2) NULL,
+  PRIMARY KEY(`id`));
+
+/* INSERE OS ESTADOS DO BRASIL */
+insert into tb_estados (nome, uf) values ('ACRE','AC');
+insert into tb_estados (nome, uf) value ('ALAGOAS','AL');
+insert into tb_estados (nome, uf) value ('AMAPÁ','AP');
+insert into tb_estados (nome, uf) value ('AMAZONAS','AM');
+insert into tb_estados (nome, uf) value ('BAHIA','BA');
+insert into tb_estados (nome, uf) value ('CEARÁ','CE');
+insert into tb_estados (nome, uf) value ('DISTRITO FEDERAL','DF');
+insert into tb_estados (nome, uf) value ('ESPIRITO SANTO','ES');
+insert into tb_estados (nome, uf) value ('GOIÁS','GO');
+insert into tb_estados (nome, uf) value ('MARANHÃO','MA');
+insert into tb_estados (nome, uf) value ('MATO GROSSO','MT');
+insert into tb_estados (nome, uf) value ('MATO GROSSO DO SUL','MS');
+insert into tb_estados (nome, uf) value ('MINAS GERAIS','MG');
+insert into tb_estados (nome, uf) value ('PARÁ','PA');
+insert into tb_estados (nome, uf) value ('PARAIBA','PB');
+insert into tb_estados (nome, uf) value ('PARANA','PR');
+insert into tb_estados (nome, uf) value ('PERNANBUCO','PE');
+insert into tb_estados (nome, uf) value ('PIAUÍ','PI');
+insert into tb_estados (nome, uf) value ('RIO GRANDE DO NORTE','RN');
+insert into tb_estados (nome, uf) value ('RIO GRANDE DO SUL','RS');
+insert into tb_estados (nome, uf) value ('RIO DE JANEIRO','RJ');
+insert into tb_estados (nome, uf) value ('RONDÔNIA','RO');
+insert into tb_estados (nome, uf) value ('RORAIMA','RR');
+insert into tb_estados (nome, uf) value ('SANTA CATARINA','SC');
+insert into tb_estados (nome, uf) value ('SÃO PAULO','SP');
+insert into tb_estados (nome, uf) value ('SERGIPE','SE');
+insert into tb_estados (nome, uf) value ('TOCANTINS','TO');

@@ -5,7 +5,8 @@
     require_once '../app/Models/Imovel.php';
     $controller = new ImovelController();
     $imoveis = $controller->getAll();
-    // $controller->pe($imoveis);
+    $estados = $controller->getEstados();
+    // $controller->pe($estados);
 ?>
 <html>
     <?php include '../util/head.php' ?>
@@ -14,7 +15,7 @@
         <div class='container'>
             <div class='row'>
                 <div class='col-sm-12'>
-                    <h3>Imovels</h3>
+                    <h3>Imoveis</h3>
                     <button class='btn btn-primary btn-sm' onclick='openForm()'>Novo</button>
                     <table class='table table-bordered'>
                         <thead>
@@ -39,7 +40,8 @@
                                     <td><?= $value->getNumero()?></td>
                                     <td><?= $value->getCep()?></td>
                                     <td><?= $value->getCidade()?></td>
-                                    <td></td>
+                                    <td><?= $value->getEstado()?></td>
+                                    <td><?= $value->getProprietario()?></td>
                                 </tr>
                                 <?php } ?>
                             <?php }else{ ?>

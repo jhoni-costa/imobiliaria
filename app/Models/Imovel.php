@@ -16,6 +16,8 @@ class Imovel extends AbstractObj{
     private $cidade;
     private $estado;
     private $proprietarioId;
+
+    private $proprietario;
     
     /** GETTERS AND SETTERS */
     public function getId(){
@@ -59,5 +61,11 @@ class Imovel extends AbstractObj{
     }
     public function setProprietarioId($proprietarioId){
         $this->proprietarioId = $proprietarioId;
+    }
+    public function getProprietario(){
+        return $this->proprietario;
+    }
+    public function setProprietario($proprietario){
+        $this->proprietario = $proprietario;
     }
 }
