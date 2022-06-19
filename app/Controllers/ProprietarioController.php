@@ -1,5 +1,5 @@
 <?php
-require_once '../Models/Proprietario.php';
+require_once '../app/Models/Proprietario.php';
 require_once 'AbstractCrud.php';
 /********************************************************************************************
  * @author Jhoni Costa <jhonirsc@gmail.com>                                                 *
@@ -13,7 +13,14 @@ class ProprietarioController extends AbstractCrud{
     protected $tableName = "tb_proprietario";
 
     public function insert($proprietario){
-        return parent::insert($proprietario);
+        $arrayCliente = [
+            "nome" => $proprietario->getNome(),
+            "email" => $proprietario->getEmail(),
+            "telefone"=> $proprietario->getTelefone(),
+            "dia_repasse"=> $proprietario->getDiaRepasse(),
+            "flag_ativo" => $proprietario->getFlagAtivo()
+        ]; 
+        return parent::insert($arrayCliente);
     }
 
     public function get($id){
@@ -28,7 +35,22 @@ class ProprietarioController extends AbstractCrud{
         $proprietario->setFlagAtivo($arrayProprietario['flag_ativo']);
         return $proprietario;
     }
-
+    public function getAll(){
+        $query = "select * from {$this->tableName}";
+        $arrClientes = $this->fetchAll($query);
+        $arr = [];
+        foreach($arrClientes as $data){
+            $proprietario = new Proprietario();
+            $proprietario->setId($data['id']);
+            $proprietario->setNome($data['nome']);
+            $proprietario->setEmail($data['email']);
+            $proprietario->setDiaRepasse($data['dia_repasse']);
+            $proprietario->setTelefone($data['telefone']);
+            $proprietario->setFlagAtivo($data['flag_ativo']);
+            $arr[] = $proprietario;
+        }
+        return $arr;
+    }
     public function update($proprietario, $where = ""){
         $arrayProprietario = [
             "nome" => $proprietario->getNome(),
