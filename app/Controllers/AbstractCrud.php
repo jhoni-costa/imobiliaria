@@ -1,4 +1,5 @@
 <?php
+// require_once '../Database/Connection.php';
 require_once '../app/Database/Connection.php';
 /********************************************************************************************
  * @author Jhoni Costa <jhonirsc@gmail.com>                                                 *
@@ -22,7 +23,7 @@ class AbstractCrud extends Connection{
         $campos = substr($campos,0,-1);
         $valores = substr($valores,0,-1);
         $insert = "insert into {$this->tableName} ({$campos})values({$valores});";
-        // $this->pe($insert);
+        
         try {
             $this->con->query($insert);
             return $this->con->insert_id;
@@ -55,10 +56,13 @@ class AbstractCrud extends Connection{
 
     public function fetchAll($selectSql){
         $result = $this->con->query($selectSql);
+        $numRows = @mysqli_num_rows($result);
         // $this->pe($selectSql);
         $arrayRet = [];
-        while($data = mysqli_fetch_assoc($result)){
-            $arrayRet[] = $data;
+        if($numRows > 0){
+            while($data = mysqli_fetch_assoc($result)){
+                $arrayRet[] = $data;
+            }
         }
         return $arrayRet;
     }

@@ -42,7 +42,7 @@
                                 <select class='form-control' required name='estado'>
                                     <option val=''>[selecione]</option>
                                     <?php foreach($estados as $estado){?>
-                                        <option value='<?=$estado['uf']?>'><?=utf8_encode($estado['nome'])?></option>
+                                        <option value='<?=$estado['uf']?>'><?=$estado['nome']?></option>
                                     <?php } ?>
                                 </select>
                             </div>

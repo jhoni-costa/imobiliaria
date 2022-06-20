@@ -45,7 +45,7 @@
                                 </tr>
                                 <?php } ?>
                             <?php }else{ ?>
-
+                                <td colspan='8'>Nenhum registro encontrado...</td>
                             <?php } ?>
                             <tr>
                             </tr>    
