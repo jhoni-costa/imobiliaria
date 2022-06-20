@@ -9,7 +9,7 @@ require_once "AbstractTest.php";
  * @author Jhoni Costa <jhonirsc@gmail.com>                                                 *
  * @git https://github.com/jhoni-costa                                                      *
  * @since 17/06/2022                                                                        *
- * @desc Classe de testes da entidade Contrato                                               *
+ * @desc Classe de testes da entidade Contrato                                              *
  *                                                                                          *
  ********************************************************************************************/
 class ContratoTest implements AbstractTest{
