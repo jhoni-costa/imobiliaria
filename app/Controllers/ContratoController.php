@@ -14,18 +14,18 @@ class ContratoController extends AbstractCrud{
     protected $tableName = "tb_contrato";
 
     public function insert($contrato){ 
-        $arrayContrato = $contrato;
-        // $arrayContrato = [
-        //     "imovel_id" => $contrato->getImovelId(),
-        //     "cliente_id" => $contrato->getClienteId(),
-        //     "proprietario_id"=> $contrato->getProprietarioId(),
-        //     "data_inicio" => $contrato->getDataInicio(),
-        //     "data_fim" => $contrato->getDataFim(),
-        //     "taxa_administracao" => $contrato->getTaxaAdministracao(),
-        //     "valor_aluguel" => $contrato->getValorAluguel(),
-        //     "valor_condominio" => $contrato->getValorCondominio(),
-        //     "valor_iptu" => $contrato->getValorIptu()
-        // ];   
+        // $arrayContrato = $contrato;
+        $arrayContrato = [
+            "imovel_id" => $contrato->getImovelId(),
+            "cliente_id" => $contrato->getClienteId(),
+            "proprietario_id"=> $contrato->getProprietarioId(),
+            "data_inicio" => $contrato->getDataInicio(),
+            "data_fim" => $contrato->getDataFim(),
+            "taxa_administracao" => $contrato->getTaxaAdministracao(),
+            "valor_aluguel" => $contrato->getValorAluguel(),
+            "valor_condominio" => $contrato->getValorCondominio(),
+            "valor_iptu" => $contrato->getValorIptu()
+        ];   
         return parent::insert($arrayContrato);
     }
 

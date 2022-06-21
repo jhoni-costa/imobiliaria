@@ -82,5 +82,17 @@ class Contrato extends AbstractObj{
         $this->valorIPTU = $valorIPTU;
     }
     
+    /* Mensalidade: 
+        Cobrança de aluguel que será enviada ao locatário com as taxas de aluguel, IPTU e Condomínio */
+    public function getValorMensalidade(){
+        return $this->getTaxaAdministracao() + $this->getValorAluguel() + ($this->getValorIPTU()/12) + $this->getValorCondominio();
+    }
     
+    /* Repasse:
+        Valor que será repassado da imobiliária para o locador do imóvel descontando a Taxa de Administração.
+        Aluguel e IPTU são repassados, condomínio é pago pela imobiliária */
+    public function getValorRepasse(){
+        return $this->getValorAluguel() + ($this->getValorIPTU()/12);
+    }
+
 }

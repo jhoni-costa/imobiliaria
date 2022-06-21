@@ -1,5 +1,6 @@
 <?php
 require_once '../app/Models/Repasse.php';
+require_once '../app/Models/Contrato.php';
 require_once 'AbstractCrud.php';
 /********************************************************************************************
  * @author Jhoni Costa <jhonirsc@gmail.com>                                                 *
@@ -19,8 +20,7 @@ class RepasseController extends AbstractCrud{
             "data_repasse"=> $repasse->getDataRepasse(),
             "numero_repasse"=> $repasse->getNumeroRepasse(),
             "mes_referencia"=> $repasse->getMesReferencia(),
-            "ano_referencia"=> $repasse->getAnoReferencia(),
-            "status_repasse" => $repasse->getStatusRepasse()
+            "ano_referencia"=> $repasse->getAnoReferencia()
         ]; 
         return parent::insert($arrayRepasse);
     }
@@ -75,7 +75,7 @@ class RepasseController extends AbstractCrud{
         parent::delete("id = {$id}");
     }
 
-    public function gerarRepassesAno($idContrato){
+    public function gerarRepassesAno($contrato){
         $mes_atual = date('m');
         $ano_atual = date('y');
         
@@ -83,9 +83,9 @@ class RepasseController extends AbstractCrud{
         for($numParcela = 1; $numParcela <= 12; $numParcela++){
                                     
             $repasse = new Repasse();
-            $repasse->setContratoId($idContrato);
-            $repasse->setValor($valor);#todo
-            $repasse->setNumeroRepasse($numeroParcela);
+            $repasse->setContratoId($contrato->getId());
+            $repasse->setValor($contrato->getValorRepasse());
+            $repasse->setNumeroRepasse($numParcela);
             $repasse->setAnoReferencia($ano_atual);
             $repasse->setMesReferencia($mes_atual++);
             if($mes_atual == 13){
@@ -94,7 +94,7 @@ class RepasseController extends AbstractCrud{
             }
             $dataRepasse = "{$ano_atual}-{$mes_atual}-01";
             // Vencimento é sempre no primeiro dia do mês
-            $repasse->setDataVencimento($dataRepasse);
+            $repasse->setDataRepasse($dataRepasse);
 
             $this->insert($repasse);
         }

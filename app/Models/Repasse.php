@@ -47,7 +47,7 @@ class Repasse extends AbstractObj{
     public function getNumeroRepasse(){
         return $this->numeroRepasse;
     }
-    public function setNumeroParcela($numeroRepasse){
+    public function setNumeroRepasse($numeroRepasse){
         $this->numeroRepasse = $numeroRepasse;
     }
     public function getMesReferencia(){

@@ -1,5 +1,7 @@
 <?php
 require_once '../app/Models/Mensalidade.php';
+require_once "../app/Models/Contrato.php"; 
+
 require_once 'AbstractCrud.php';
 /********************************************************************************************
  * @author Jhoni Costa <jhonirsc@gmail.com>                                                 *
@@ -20,8 +22,7 @@ class MensalidadeController extends AbstractCrud{
             "data_pagamento"=> $mensalidade->getDataPagamento(),
             "numero_parcela"=> $mensalidade->getNumeroParcela(),
             "mes_referencia"=> $mensalidade->getMesReferencia(),
-            "ano_referencia"=> $mensalidade->getAnoReferencia(),
-            "status_pagamento" => $mensalidade->getStatusPagamento()
+            "ano_referencia"=> $mensalidade->getAnoReferencia()
         ]; 
         return parent::insert($arrayMensalidade);
     }
@@ -79,17 +80,16 @@ class MensalidadeController extends AbstractCrud{
         parent::delete("id = {$id}");
     }
 
-    public function gerarMensalidadesAno($idContrato){
+    public function gerarMensalidadesAno($contrato){
         $mes_atual = date('m');
         $ano_atual = date('y');
         
-
         for($numParcela = 1; $numParcela <= 12; $numParcela++){
                                     
             $mensalidade = new Mensalidade();
-            $mensalidade->setContratoId($idContrato);
-            $mensalidade->setValor($valor);#todo
-            $mensalidade->setNumeroParcela($numeroParcela);
+            $mensalidade->setContratoId($contrato->getId());
+            $mensalidade->setValor($contrato->getValorMensalidade());
+            $mensalidade->setNumeroParcela($numParcela);
             $mensalidade->setAnoReferencia($ano_atual);
             $mensalidade->setMesReferencia($mes_atual++);
             if($mes_atual == 13){

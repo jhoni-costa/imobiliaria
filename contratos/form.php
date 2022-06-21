@@ -28,8 +28,11 @@
                     <h4>Gerar Contrato</h4>
                 </div>
                 <div class='row'>
-                    <form action='' id='form-contrato' action='POST'>
+                    <form action='form-action.php' id='form-contrato' method='POST'>
                         <div class='row'>
+                            <div>
+                                <input type='hidden' name='proprietario_id' value='<?=$currentImovel->getProprietarioId()?>'>
+                            </div>
                             <div class='mb-3 col-sm-6'>
                                 <label for="cliente-contrato" class="form-label">Cliente:</label>
                                 <select class='form-select' name='cliente_id' id='cliente_id'>
@@ -47,7 +50,7 @@
                         </div>
                         <div class='row'>    
                             <div class='mb-3 col-sm-2'>
-                                <label from='taxa_administracao' class='form-label'>Inicio</label>
+                                <label from='taxa_administracao' class='form-label'>Taxa Administração</label>
                                 <input type='text' class='form-control' name='taxa_administracao' id='taxa_administracao'>
                             </div>
                             <div class='mb-3 col-sm-2'>
@@ -77,11 +80,5 @@
 <script>
     voltar = () => {
         window.location.href = 'index.php';
-    }
-
-    gerarContrato = () => {
-        if(confirm("Deseja gerar um contrato para este imovel?")){
-            $('#div-cliente-contrato').toggle();
-        }
     }
 </script>
