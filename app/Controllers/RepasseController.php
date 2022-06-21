@@ -74,4 +74,29 @@ class RepasseController extends AbstractCrud{
     public function delete($id){
         parent::delete("id = {$id}");
     }
+
+    public function gerarRepassesAno($idContrato){
+        $mes_atual = date('m');
+        $ano_atual = date('y');
+        
+
+        for($numParcela = 1; $numParcela <= 12; $numParcela++){
+                                    
+            $repasse = new Repasse();
+            $repasse->setContratoId($idContrato);
+            $repasse->setValor($valor);#todo
+            $repasse->setNumeroRepasse($numeroParcela);
+            $repasse->setAnoReferencia($ano_atual);
+            $repasse->setMesReferencia($mes_atual++);
+            if($mes_atual == 13){
+                $mes_atual = 1;
+                $ano_atual++;
+            }
+            $dataRepasse = "{$ano_atual}-{$mes_atual}-01";
+            // Vencimento é sempre no primeiro dia do mês
+            $repasse->setDataVencimento($dataRepasse);
+
+            $this->insert($repasse);
+        }
+    }
 }

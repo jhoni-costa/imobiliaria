@@ -78,4 +78,30 @@ class MensalidadeController extends AbstractCrud{
     public function delete($id){
         parent::delete("id = {$id}");
     }
+
+    public function gerarMensalidadesAno($idContrato){
+        $mes_atual = date('m');
+        $ano_atual = date('y');
+        
+
+        for($numParcela = 1; $numParcela <= 12; $numParcela++){
+                                    
+            $mensalidade = new Mensalidade();
+            $mensalidade->setContratoId($idContrato);
+            $mensalidade->setValor($valor);#todo
+            $mensalidade->setNumeroParcela($numeroParcela);
+            $mensalidade->setAnoReferencia($ano_atual);
+            $mensalidade->setMesReferencia($mes_atual++);
+            if($mes_atual == 13){
+                $mes_atual = 1;
+                $ano_atual++;
+            }
+            $dataVencimento = "{$ano_atual}-{$mes_atual}-01";
+            // Vencimento é sempre no primeiro dia do mês
+            $mensalidade->setDataVencimento($dataVencimento);
+
+            $this->insert($mensalidade);
+        }
+
+    }
 }
