@@ -30,9 +30,9 @@
                 <div class='row'>
                     <form action='' id='form-contrato' action='POST'>
                         <div class='row'>
-                            <div class='mb-3 col-sm-6' imovel_id='<?= $currentImovel->getId()?>'>
+                            <div class='mb-3 col-sm-6'>
                                 <label for="cliente-contrato" class="form-label">Cliente:</label>
-                                <select class='form-select' name='cliente-contrato' id='cliente-contrato'>
+                                <select class='form-select' name='cliente_id' id='cliente_id'>
                                 <option val=''>[selecione]</option>
                                 <?php foreach($listaClientes as $cliente){ ?>
                                     <option val='<?=$cliente->getId()?>'><?=$cliente->getNome()?></option>
@@ -42,6 +42,7 @@
                         <div class='mb-3 col-sm-2'>
                             <label from='data_inicio' class='form-label'>Inicio</label>
                             <input type='date' class='form-control' name='data_inicio' id='data_inicio'>
+                            <input type='hidden' name='imovel_id' value='<?= $currentImovel->getId()?>'>
                         </div>
                         </div>
                         <div class='row'>    
