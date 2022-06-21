@@ -38,7 +38,7 @@
                                 <select class='form-select' name='cliente_id' id='cliente_id'>
                                 <option val=''>[selecione]</option>
                                 <?php foreach($listaClientes as $cliente){ ?>
-                                    <option val='<?=$cliente->getId()?>'><?=$cliente->getNome()?></option>
+                                    <option value='<?=$cliente->getId()?>'><?=$cliente->getNome()?></option>
                                 <?php } ?>
                                 </select>
                             </div>

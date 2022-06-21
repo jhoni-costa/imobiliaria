@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 'on');
+error_reporting(-1);
 require_once '../app/Models/Mensalidade.php';
 require_once "../app/Models/Contrato.php"; 
 
@@ -81,8 +83,9 @@ class MensalidadeController extends AbstractCrud{
     }
 
     public function gerarMensalidadesAno($contrato){
+        // $this->pe($contrato);
         $mes_atual = date('m');
-        $ano_atual = date('y');
+        $ano_atual = date('Y');
         
         for($numParcela = 1; $numParcela <= 12; $numParcela++){
                                     
@@ -92,6 +95,7 @@ class MensalidadeController extends AbstractCrud{
             $mensalidade->setNumeroParcela($numParcela);
             $mensalidade->setAnoReferencia($ano_atual);
             $mensalidade->setMesReferencia($mes_atual++);
+            $mensalidade->setDataPagamento('0000-00-00');
             if($mes_atual == 13){
                 $mes_atual = 1;
                 $ano_atual++;
@@ -99,7 +103,7 @@ class MensalidadeController extends AbstractCrud{
             $dataVencimento = "{$ano_atual}-{$mes_atual}-01";
             // Vencimento é sempre no primeiro dia do mês
             $mensalidade->setDataVencimento($dataVencimento);
-
+            // $this->pe($mensalidade);
             $this->insert($mensalidade);
         }
 

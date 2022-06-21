@@ -1,4 +1,6 @@
 <?php
+ini_set('display_errors', 'on');
+error_reporting(-1);
 require_once '../app/Models/Repasse.php';
 require_once '../app/Models/Contrato.php';
 require_once 'AbstractCrud.php';

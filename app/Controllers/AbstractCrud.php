@@ -23,7 +23,7 @@ class AbstractCrud extends Connection{
         $campos = substr($campos,0,-1);
         $valores = substr($valores,0,-1);
         $insert = "insert into {$this->tableName} ({$campos})values({$valores});";
-        
+        $this->p($insert);
         try {
             $this->con->query($insert);
             return $this->con->insert_id;

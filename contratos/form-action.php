@@ -23,7 +23,7 @@ $valorAluguel = isset($_POST['valor_aluguel']) ? $_POST['valor_aluguel'] : '';
 $valorCondominio = isset($_POST['valor_condominio']) ? $_POST['valor_condominio'] : '';
 $valorIPTU = isset($_POST['valor_iptu']) ? $_POST['valor_iptu'] : "";
 
-// $controller->pe($_POST);'
+// $controller->pe($_POST);
 $contrato = new Contrato();
 $contrato->setImovelId($imovelId);
 $contrato->setProprietarioId($proprietarioId);
@@ -39,13 +39,15 @@ if($id > 0){ // Update
     $contrato->setId($id);
     $controller->update($contrato);
 }else{ // Insert
+    // $controller->pe($contrato);
     $id = $controller->insert($contrato);
+    $contrato->setId($id);
     $mensalidadeController->gerarMensalidadesAno($contrato);
     $repasseController->gerarRepassesAno($contrato);
 }
 
 if($id > 0){
-    // header("Location: index.php");
+    header("Location: index.php");
 }else{
-    // header("Location: form.php");
+    header("Location: form.php");
 }
