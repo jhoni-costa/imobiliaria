@@ -41,6 +41,7 @@ class AbstractCrud extends Connection{
         }
         $update = substr($update,0,-1);
         $update .= "where {$where}";
+        // $this->pe($update);
         return $this->con->query($update);
     }
 

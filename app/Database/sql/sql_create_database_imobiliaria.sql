@@ -72,6 +72,37 @@ CREATE TABLE `imobiliaria`.`tb_contrato` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
+/* Cria a Tabela de mensalidades */
+CREATE TABLE `imobiliaria`.`tb_mensalidade` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `contrato_id` INT NULL,
+  `valor` DOUBLE NULL,
+  `data_vencimento` DATE NULL,
+  `data_pagamento` DATE NULL,
+  `numero_parcela` INT NULL,
+  `mes_referencia` INT NULL,
+  `ano_referencia` INT NULL,
+  `status_pagamento` INT(2) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+/* Cria a Tabela de repasse */
+CREATE TABLE `imobiliaria`.`tb_repasse` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `contrato_id` INT NULL,
+  `valor` DOUBLE NULL,
+  `data_repasse` DATE NULL,
+  `numero_repasse` INT NULL,
+  `mes_referencia` INT NULL,
+  `ano_referencia` INT NULL,
+  `status_repasse` INT(2) NULL DEFAULT 0,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8;
+
+
+
 /* Cria tabela auxiliar de estados*/
 CREATE TABLE `imobiliaria`.`tb_estados`
 (`id` INT NOT NULL AUTO_INCREMENT,

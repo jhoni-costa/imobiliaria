@@ -1,5 +1,6 @@
 <?php
 require_once '../app/Models/Imovel.php';
+require_once '../app/Models/Proprietario.php';
 require_once 'AbstractCrud.php';
 /********************************************************************************************
  * @author Jhoni Costa <jhonirsc@gmail.com>                                                 *
@@ -25,26 +26,57 @@ class ImovelController extends AbstractCrud{
     }
 
     public function get($id){
-        $query = "select * from {$this->tableName} where id = {$id}";
+        $query = "
+            select 
+                    {$this->tableName}.id as imovel_id,
+                    {$this->tableName}.*,
+                    tb_proprietario.id as proprietario_id,
+                    tb_proprietario.*
+                from {$this->tableName} 
+                    inner join tb_proprietario on tb_proprietario.id = {$this->tableName}.proprietario_id 
+                where
+                    {$this->tableName}.id = {$id}";
         $arrImovel = $this->fetchRow($query);
+        // $this->pe($arrImovel);
         $imovel = new Imovel();
-        $imovel->setId($arrImovel['id']);
+        $imovel->setId($arrImovel['imovel_id']);
         $imovel->setRua($arrImovel['rua']);
         $imovel->setNumero($arrImovel['numero']);
         $imovel->setCep($arrImovel['cep']);
+        $imovel->setEstado($arrImovel['estado']);
         $imovel->setCidade($arrImovel['cidade']);
         $imovel->setProprietarioId($arrImovel['proprietario_id']);
+        
+        $proprietario = new Proprietario();
+        $proprietario->setId($arrImovel['proprietario_id']);
+        $proprietario->setNome($arrImovel['nome']);
+        $proprietario->setEmail($arrImovel['email']);
+        $proprietario->setTelefone($arrImovel['telefone']);
+        $proprietario->setDiaRepasse($arrImovel['dia_repasse']);
+        $proprietario->setFlagAtivo($arrImovel['flag_ativo']);
+
+        $imovel->setProprietario($proprietario);
+
         return $imovel;
     }
     
     public function getAll(){
-        $query = "select * from {$this->tableName} inner join tb_proprietario on tb_proprietario.id = tb_imovel.proprietario_id";
+        $query = "
+            select 
+                {$this->tableName}.id as imovel_id,
+                {$this->tableName}.*,
+                tb_proprietario.id as proprietario_id,
+                tb_proprietario.*
+            from 
+                {$this->tableName}
+                    inner join tb_proprietario on tb_proprietario.id = {$this->tableName}.proprietario_id";
+
         $arrImoveis = $this->fetchAll($query);
-        // $this->pe($arrImoveis);
+        // $this->pe($query);
         $arr = [];
         foreach($arrImoveis as $data){
             $imovel = new Imovel();
-            $imovel->setId($data['id']);
+            $imovel->setId($data['imovel_id']);
             $imovel->setRua($data['rua']);
             $imovel->setNumero($data['numero']);
             $imovel->setCep($data['cep']);
@@ -64,8 +96,9 @@ class ImovelController extends AbstractCrud{
             "cep"=> $imovel->getCep(),
             "cidade" => $imovel->getCidade(),
             "estado" => $imovel->getEstado(),
-            "priprietario_id" => $imovel->getProprietarioId()
+            "proprietario_id" => $imovel->getProprietarioId()
         ];
+        // $this->pe($imovel);
         return parent::update($arrayImovel, "id = {$imovel->getId()}");
     }
 

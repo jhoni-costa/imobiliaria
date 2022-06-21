@@ -33,7 +33,7 @@
                         <tbody>
                             <?php if(count($imoveis) > 0){ ?>
                                 <?php foreach ($imoveis as $key => $value) { ?>
-                                <tr>
+                                <tr onclick='openForm(<?= $value->getId()?>)'>
                                     <td><?= ++$key ?></td>
                                     <td><?= $value->getId()?></td>
                                     <td><?= $value->getRua()?></td>
@@ -57,7 +57,11 @@
     </body>
 </html>
 <script>
-    openForm = () => {
-        window.location.href = 'form.php';
+    openForm = (id = 0) => {
+        if(id == 0){
+            window.location.href = 'form.php';
+        }else{
+            window.location.href = `form.php?id=${id}`;
+        }
     }
 </script>
