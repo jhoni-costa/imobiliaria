@@ -3,19 +3,24 @@
     error_reporting(-1);
     require_once '../app/Controllers/ProprietarioController.php';
     require_once '../app/Controllers/ImovelController.php';
+    require_once '../app/Controllers/ClienteController.php';
     require_once '../app/Models/Imovel.php';
 
     $controller = new ProprietarioController();
     $controllerImovel = new ImovelController();
+    $controllerCliente = new ClienteController();
 
     $estados = $controller->getEstados();
     $proprietarios = $controller->getAll();
     
     $currentImovel = new Imovel();
+    $listaClientes = [];
     $id = isset($_GET['id']) ? $_GET['id'] : 0;
     if($id > 0){
         $currentImovel = $controllerImovel->get($id);
-        // $controller->pe($currentImovel);
+        $listaClientes = $controllerCliente->getAll();
+
+        // $controller->pe($listaClientes);
     }
 ?>
 <html>
@@ -27,11 +32,6 @@
             <div class='col-sm-12 page-title'>
                 <h3>Cadastro de Imóveis</h3>
             </div>
-            <?php if($id > 0){?>
-                <div class='col-sm-12'>
-                    <button type='button' class='btn btn-primary btn-sm'>Gerar Contrato</button>
-                </div>
-            <?php } ?>
                 <div class='col-sm-12'>
                     <form class='form' method='POST' action='imovel-action.php '>
                         <div>
@@ -78,6 +78,9 @@
                         <div class="mb-3">
                             <button type="submit" class='btn btn-primary btn-sm'>Salvar</button>
                             <button type="button" class='btn btn-warning btn-sm' onclick='voltar()'>Voltar</button>
+                            <?php if($id > 0){?>
+                                <button type='button' class='btn btn-success btn-sm' onclick='gerarContrato(<?= $currentImovel->getId(); ?>)'>Gerar Contrato</button>
+                            <?php } ?>
                         </div>
                     </form>
                 </div>
@@ -88,5 +91,11 @@
 <script>
     voltar = () => {
         window.location.href = 'index.php';
+    }
+
+    gerarContrato = (id) => {
+        if(confirm("Deseja gerar um contrato para este imovel?")){
+            window.location.href = `../contratos/form.php?id=${id}`;
+        }
     }
 </script>

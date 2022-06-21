@@ -35,7 +35,7 @@ class ClienteController extends AbstractCrud{
     }
 
     public function getAll(){
-        $query = "select * from {$this->tableName}";
+        $query = "select * from {$this->tableName} where flag_ativo = 1";
         $arrClientes = $this->fetchAll($query);
         $arr = [];
         foreach($arrClientes as $data){
