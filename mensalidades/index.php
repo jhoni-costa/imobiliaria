@@ -30,13 +30,13 @@
                                 <td>Ações</td>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbod>
                             <?php if(count($listaMensalidades) > 0){ ?>
                                 <?php foreach ($listaMensalidades as $key => $value) { ?>
                                 <tr class='<?= $value->getStatusPagamento() == 1 ? "table-success" : "" ?> <?= $value->getDataVencimento() < date('Y-m-d') ? "table-danger" : "" ?>'>
                                     <td><?= ++$key ?></td>
                                     <td><?= $value->getNumeroParcela()?></td>
-                                    <td><?= $value->getValor()?></td>
+                                    <td>R$ <?= round($value->getValor(),2)?></td>
                                     <td><?= $value->getDataVencimento()?></td>
                                     <td><?= $value->getDataPagamento()?></td>
                                     <td><?= $value->getMesReferencia() . "/" . $value->getAnoReferencia()?></td>

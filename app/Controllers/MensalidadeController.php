@@ -21,7 +21,7 @@ class MensalidadeController extends AbstractCrud{
             "contrato_id" => $mensalidade->getContratoId(),
             "valor" => $mensalidade->getValor(),
             "data_vencimento"=> $mensalidade->getDataVencimento(),
-            "data_pagamento"=> $mensalidade->getDataPagamento(),
+            // "data_pagamento"=> $mensalidade->getDataPagamento(),
             "numero_parcela"=> $mensalidade->getNumeroParcela(),
             "mes_referencia"=> $mensalidade->getMesReferencia(),
             "ano_referencia"=> $mensalidade->getAnoReferencia()

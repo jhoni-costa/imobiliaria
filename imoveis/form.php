@@ -1,5 +1,5 @@
 <?php 
-    ini_set('display_errors', 'on');
+    ini_set('display_errors', 'off');
     error_reporting(-1);
     require_once '../app/Controllers/ProprietarioController.php';
     require_once '../app/Controllers/ImovelController.php';

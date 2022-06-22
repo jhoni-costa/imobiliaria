@@ -35,7 +35,7 @@
                                 <tr class='<?= $value->getStatusRepasse() == 1 ? "table-success" : "" ?> <?= $value->getDataRepasse() < date('Y-m-d') ? "table-danger" : "" ?>'>
                                     <td><?= ++$key ?></td>
                                     <td><?= $value->getNumeroRepasse()?></td>
-                                    <td><?= $value->getValor()?></td>
+                                    <td>R$ <?= round($value->getValor(),2)?></td>
                                     <td><?= $value->getDataRepasse()?></td>
                                     <td><?= $value->getMesReferencia() . "/" . $value->getAnoReferencia()?></td>
                                     <td><?= $value->getStatusRepasse() == 1 ? "OK" : "Pendente" ?></td>

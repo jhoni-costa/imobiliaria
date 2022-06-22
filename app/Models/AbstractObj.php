@@ -41,4 +41,11 @@ class AbstractObj{
         $dif = strtotime($dataFinal) - strtotime($dataInicial);
         return floor($dif/(60*60*24));
     }
+
+    /* Formata valor decimal para .  */
+    public function formataValor($valor){
+        // $valor = str_replace(".","",$valor);
+        $valor = str_replace(",",".",$valor);
+        return $valor;
+    }
 }

@@ -30,10 +30,10 @@ $contrato->setProprietarioId($proprietarioId);
 $contrato->setClienteId($clienteId);
 $contrato->setDataInicio($dataInicio);
 $contrato->setDataFim($dataFim);
-$contrato->setTaxaAdministracao($taxaAdministracao);
-$contrato->setValorAluguel($valorAluguel);
-$contrato->setValorCondominio($valorCondominio);
-$contrato->setValorIPTU($valorIPTU);
+$contrato->setTaxaAdministracao($contrato->formataValor($taxaAdministracao));
+$contrato->setValorAluguel($contrato->formataValor($valorAluguel));
+$contrato->setValorCondominio($contrato->formataValor($valorCondominio));
+$contrato->setValorIPTU($contrato->formataValor($valorIPTU));
 // $controller->pe($contrato);
 if($id > 0){ // Update
     $contrato->setId($id);

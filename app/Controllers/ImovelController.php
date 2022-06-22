@@ -111,6 +111,7 @@ class ImovelController extends AbstractCrud{
         // $this->p($select);
         $result = $this->fetchRow($select);
         // $this->p($result);
+        
         if($result['id'] > 0){
             return false;
         }else{

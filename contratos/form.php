@@ -51,19 +51,19 @@
                         <div class='row'>    
                             <div class='mb-3 col-sm-2'>
                                 <label from='taxa_administracao' class='form-label'>Taxa Administração</label>
-                                <input type='text' class='form-control' name='taxa_administracao' id='taxa_administracao'>
+                                <input type='text' class='form-control' placeholder='R$ 0.00' name='taxa_administracao' id='taxa_administracao'>
                             </div>
                             <div class='mb-3 col-sm-2'>
                                 <label from='valor_aluguel' class='form-label'>Valor Aluguel</label>
-                                <input type='text' class='form-control' name='valor_aluguel' id='valor_aluguel'>
+                                <input type='text' class='form-control' name='valor_aluguel' placeholder='R$ 0.00' id='valor_aluguel'>
                             </div>
                             <div class='mb-3 col-sm-2'>
                                 <label from='valor_condominio' class='form-label'>Valor Condominio</label>
-                                <input type='text' class='form-control' name='valor_condominio' id='valor_condominio'>
+                                <input type='text' class='form-control' name='valor_condominio' placeholder='R$ 0.00' id='valor_condominio'>
                             </div>
                             <div class='mb-3 col-sm-2'>
                                 <label from='valor_iptu' class='form-label'>Valor IPTU</label>
-                                <input type='text' class='form-control' name='valor_iptu' id='valor_iptu'>
+                                <input type='text' class='form-control' name='valor_iptu' placeholder='R$ 0.00' id='valor_iptu'>
                             </div>
                         </div>
                         <div class='row'>
