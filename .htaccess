@@ -1,0 +1,17 @@
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-s
+RewriteCond %{REQUEST_FILENAME} \.htm$
+RewriteRule (.*\.htm?) html/$1 [NC,L]
+
+RewriteCond %{REQUEST_FILENAME} -s [OR]
+RewriteCond %{REQUEST_FILENAME} -l [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^.*$ - [NC,L]
+RewriteRule !\.(css|js|swf)$ index.php [NC,L]
+
+<IfModule mod_php7.c>
+    php_flag magic_quotes_gpc off
+</IfModule>
+
+AddDefaultCharset UFT-8

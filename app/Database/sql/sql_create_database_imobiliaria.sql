@@ -11,7 +11,9 @@ CREATE TABLE IF NOT EXISTS `imobiliaria`.`tb_cliente`
   `flag_ativo` INT (2) NOT NULL DEFAULT 1 COMMENT '1 = Ativo\n0 = Inativo',
   `time_stamp` DATETIME NOT NULL DEFAULT now(),
   PRIMARY KEY
-(`id`));
+(`id`))
+  ENGINE = InnoDB
+  DEFAULT CHARACTER SET = utf8;
 
 /* Cria a Tabela de proprietario */
 CREATE TABLE IF NOT EXISTS `imobiliaria`.`tb_proprietario`
@@ -23,7 +25,9 @@ CREATE TABLE IF NOT EXISTS `imobiliaria`.`tb_proprietario`
   `flag_ativo` INT (2) NOT NULL DEFAULT 1 COMMENT '1 = Ativo\n0 = Inativo',
   `time_stamp` DATETIME NOT NULL DEFAULT now(),
   PRIMARY KEY
-(`id`));
+(`id`))
+  ENGINE = InnoDB
+  DEFAULT CHARACTER SET = utf8;
 
 /* Cria a Tabela de imoveis */
 CREATE TABLE IF NOT EXISTS `imobiliaria`.`tb_imovel`
@@ -40,10 +44,12 @@ CREATE TABLE IF NOT EXISTS `imobiliaria`.`tb_imovel`
     FOREIGN KEY (`id`)
     REFERENCES `imobiliaria`.`tb_proprietario`(`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
 
 /* Cria a Tabela de contratos */
-CREATE TABLE `imobiliaria`.`tb_contrato` (
+CREATE TABLE IF NOT EXISTS `imobiliaria`.`tb_contrato` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `imovel_id` INT NULL,
   `cliente_id` INT NULL,
@@ -70,10 +76,12 @@ CREATE TABLE `imobiliaria`.`tb_contrato` (
     FOREIGN KEY (`id`)
     REFERENCES `imobiliaria`.`tb_proprietario` (`id`)
     ON DELETE NO ACTION
-    ON UPDATE NO ACTION);
+    ON UPDATE NO ACTION)
+    ENGINE = InnoDB
+    DEFAULT CHARACTER SET = utf8;
 
 /* Cria a Tabela de mensalidades */
-CREATE TABLE `imobiliaria`.`tb_mensalidade` (
+CREATE TABLE IF NOT EXISTS `imobiliaria`.`tb_mensalidade` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `contrato_id` INT NULL,
   `valor` DOUBLE NULL,
@@ -88,7 +96,7 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 /* Cria a Tabela de repasse */
-CREATE TABLE `imobiliaria`.`tb_repasse` (
+CREATE TABLE IF NOT EXISTS `imobiliaria`.`tb_repasse` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `contrato_id` INT NULL,
   `valor` DOUBLE NULL,
@@ -102,9 +110,8 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8;
 
 
-
 /* Cria tabela auxiliar de estados*/
-CREATE TABLE `imobiliaria`.`tb_estados`
+CREATE TABLE IF NOT EXISTS `imobiliaria`.`tb_estados`
 (`id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NULL,
   `uf` VARCHAR (2) NULL,
