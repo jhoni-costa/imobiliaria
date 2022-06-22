@@ -84,7 +84,7 @@ class MensalidadeController extends AbstractCrud{
             $mensalidade->setContratoId($data['contrato_id']);
             $mensalidade->setValor($data['valor']);
             $mensalidade->setDataVencimento($data['data_vencimento']);
-            $mensalidade->setDataPagamento($data['data_pagamento']);
+            //$mensalidade->setDataPagamento($data['data_pagamento']);
             $mensalidade->setNumeroParcela($data['numero_parcela']);
             $mensalidade->setMesReferencia($data['mes_referencia']);
             $mensalidade->setAnoReferencia($data['ano_referencia']);
@@ -127,16 +127,22 @@ class MensalidadeController extends AbstractCrud{
                                     
             $mensalidade = new Mensalidade();
             $mensalidade->setContratoId($contrato->getId());
-            $mensalidade->setValor($contrato->getValorMensalidade());
+            
             $mensalidade->setNumeroParcela($numParcela);
             $mensalidade->setAnoReferencia($ano_atual);
             $mensalidade->setMesReferencia($mes_atual++);
-            $mensalidade->setDataPagamento('0000-00-00');
+            // $mensalidade->setDataPagamento('0000-00-00');
             if($mes_atual == 13){
                 $mes_atual = 1;
                 $ano_atual++;
             }
             $dataVencimento = "{$ano_atual}-{$mes_atual}-01";
+            $valorMensalidade = $contrato->getValorMensalidade();
+            if($numParcela == 1){
+                $diasDif = $mensalidade->calculaDias($contrato->getDataInicio(),$dataVencimento);
+                $valorMensalidade = ($valorMensalidade / 30 * $diasDif);
+            }
+            $mensalidade->setValor($valorMensalidade);
             // Vencimento é sempre no primeiro dia do mês
             $mensalidade->setDataVencimento($dataVencimento);
             // $this->pe($mensalidade);

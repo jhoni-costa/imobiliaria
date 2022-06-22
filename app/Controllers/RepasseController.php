@@ -119,7 +119,6 @@ class RepasseController extends AbstractCrud{
                                     
             $repasse = new Repasse();
             $repasse->setContratoId($contrato->getId());
-            $repasse->setValor($contrato->getValorRepasse());
             $repasse->setNumeroRepasse($numParcela);
             $repasse->setAnoReferencia($ano_atual);
             $repasse->setMesReferencia($mes_atual++);
@@ -127,7 +126,14 @@ class RepasseController extends AbstractCrud{
                 $mes_atual = 1;
                 $ano_atual++;
             }
+            $valor = $contrato->getValorRepasse();
             $dataRepasse = "{$ano_atual}-{$mes_atual}-01";
+            if($numParcela == 1 ){
+                $diasDif = $repasse->calculaDias($contrato->getDataInicio(),$dataRepasse);
+                $valor = ($valor / 30 * $diasDif);
+            }
+            
+            $repasse->setValor($valor);
             // Vencimento é sempre no primeiro dia do mês
             $repasse->setDataRepasse($dataRepasse);
 

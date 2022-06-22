@@ -29,4 +29,9 @@ class AbstractObj{
     public function oClock(){
         return date("H:i:s");
     }
+
+    public function calculaDias($dataInicial, $dataFinal){
+        $dif = strtotime($dataFinal) - strtotime($dataInicial);
+        return floor($dif/(60*60*24));
+    }
 }
