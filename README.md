@@ -4,6 +4,7 @@ Versão do PHP utilizada: 7.4.30 <br>
 Banco de dados MySQL - Versão: 8.0.29<br>
 Versão do Apache: 2.4.52 <br>
 Sistema operacional em que foi desenvolvido: Ubuntu 22.04 LTE <br>
+Editor/IDE utilizada : Visual Studio Code
 
 
 <h3>Para rodar o projeto no Linux:</h3>
