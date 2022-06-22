@@ -42,6 +42,34 @@ class RepasseController extends AbstractCrud{
 
         return $repasse;
     }
+    public function getByImovelId($imovelId){
+        $query = "
+                select 
+                        {$this->tableName}.id as repasse_id,
+                        {$this->tableName}.* 
+                    from
+                        {$this->tableName} 
+                            inner join tb_contrato on tb_contrato.id = {$this->tableName}.contrato_id
+                    where
+                        tb_contrato.imovel_id = {$imovelId}";
+        
+        $arrayMensalidade = $this->fetchAll($query);
+        // $this->pe($query);
+        $arr = [];
+        foreach($arrayMensalidade as $data){
+            $repasse = new Repasse();
+            $repasse->setId($data['repasse_id']);
+            $repasse->setContratoId($data['contrato_id']);
+            $repasse->setValor($data['valor']);
+            $repasse->setDataRepasse($data['data_repasse']);
+            $repasse->setNumeroRepasse($data['numero_repasse']);
+            $repasse->setMesReferencia($data['mes_referencia']);
+            $repasse->setAnoReferencia($data['ano_referencia']);
+            $repasse->setStatusRepasse($data['status_repasse']);
+            $arr[] = $repasse;
+        }
+        return $arr;
+    }
     public function getAll(){
         $query = "select * from {$this->tableName}";
         $arrClientes = $this->fetchAll($query);
@@ -72,7 +100,12 @@ class RepasseController extends AbstractCrud{
         ]; 
         return parent::update($arrayRepasse, "id = {$repasse->getId()}");
     }
-
+    public function validaRepasse($id){
+        $array = [
+            "status_repasse" => '1'
+        ]; 
+        return parent::update($array, "id = {$id}");
+    }
     public function delete($id){
         parent::delete("id = {$id}");
     }

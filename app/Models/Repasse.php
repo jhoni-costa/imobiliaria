@@ -62,10 +62,10 @@ class Repasse extends AbstractObj{
     public function setAnoReferencia($anoReferencia){
         $this->anoReferencia = $anoReferencia;
     }
-    public function getStatusPagamento($statusPagamento){
-        $this->statusPagamento = $statusPagamento;
+    public function getStatusRepasse(){
+        return $this->statusRepasse;
     }
-    public function setStatusPagamento(){
-        return $this->statusPagamento;
+    public function setStatusRepasse($statusRepasse){
+        $this->statusRepasse = $statusRepasse;
     }
 }

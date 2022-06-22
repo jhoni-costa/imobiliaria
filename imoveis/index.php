@@ -51,7 +51,7 @@
                                             <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                                 <li><a class="dropdown-item" href="form.php?id=<?=$value->getId()?>">Ver</a></li>
                                                 <li><a class="dropdown-item" href="../mensalidades/index.php?id=<?=$value->getId()?>">Mensalidades</a></li>
-                                                <li><a class="dropdown-item" href="#">Repasses</a></li>
+                                                <li><a class="dropdown-item" href="../repasse/index.php?id=<?=$value->getId()?>">Repasses</a></li>
                                             </ul>
                                         </div>
                                     </td>

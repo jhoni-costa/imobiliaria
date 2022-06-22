@@ -2,12 +2,12 @@
     ini_set('display_errors', 'on');
     error_reporting(-1);
 
-    require_once "../app/Controllers/MensalidadeController.php";
-    $controller = new MensalidadeController();
+    require_once "../app/Controllers/RepasseController.php";
+    $controller = new RepasseController();
 
     $imovelId = isset($_GET['id']) ? $_GET['id'] : 0;
-    $listaMensalidades = $controller->getByImovelId($imovelId);
-    // $controller->pe($listaMensalidades);
+    $listaRepasses = $controller->getByImovelId($imovelId);
+    // $controller->pe($listaRepasses);
 ?>
 <html>
     <?php include '../util/head.php' ?>
@@ -16,31 +16,29 @@
         <div class='container'>
             <div class='row'>
                 <div class='col-sm-12'>
-                    <h3>Mensalidades</h3>
+                    <h3>Repasses</h3>
                     <table class='table table-bordered'>
                         <thead>
                             <tr>
                                 <td>#</td>
                                 <td>Nº</td>
                                 <td>Valor</td>
-                                <td>Data Vencimento</td>
-                                <td>Data Pagamento</td>
+                                <td>Data Repasse</td>
                                 <td>Referência</td>
                                 <td>Status</td>
                                 <td>Ações</td>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php if(count($listaMensalidades) > 0){ ?>
-                                <?php foreach ($listaMensalidades as $key => $value) { ?>
-                                <tr class='<?= $value->getStatusPagamento() == 1 ? "table-success" : "" ?> <?= $value->getDataVencimento() < date('Y-m-d') ? "table-danger" : "" ?>'>
+                            <?php if(count($listaRepasses) > 0){ ?>
+                                <?php foreach ($listaRepasses as $key => $value) { ?>
+                                <tr class='<?= $value->getStatusRepasse() == 1 ? "table-success" : "" ?> <?= $value->getDataRepasse() < date('Y-m-d') ? "table-danger" : "" ?>'>
                                     <td><?= ++$key ?></td>
-                                    <td><?= $value->getNumeroParcela()?></td>
+                                    <td><?= $value->getNumeroRepasse()?></td>
                                     <td><?= $value->getValor()?></td>
-                                    <td><?= $value->getDataVencimento()?></td>
-                                    <td><?= $value->getDataPagamento()?></td>
+                                    <td><?= $value->getDataRepasse()?></td>
                                     <td><?= $value->getMesReferencia() . "/" . $value->getAnoReferencia()?></td>
-                                    <td><?= $value->getStatusPagamento() == 1 ? "Pago" : "Pendente" ?></td>
+                                    <td><?= $value->getStatusRepasse() == 1 ? "OK" : "Pendente" ?></td>
                                     <td style='text-align: center; cursor: pointer' onclick='confirmarPagamento(<?=$value->getId()?>)'><i class="fa-regular fa-thumbs-up"></i></td>
                                 </tr>
                                 <?php } ?>
@@ -63,9 +61,9 @@
     }
 
     confirmarPagamento = (id) =>{
-        if(confirm("Deseja confirmar o pagamento desta mensalidade?")){
+        if(confirm("Deseja confirmar este repasse?")){
             $.ajax({
-                url : "ajax-valida-pagamento.php",
+                url : "ajax-valida-repasse.php",
                 type : 'post',
                 dataType: 'json',
                 data : {
@@ -73,7 +71,7 @@
                 },
                 success : function(json){
                     if(json.ok == 1){
-                        alert("Pagamento da mensalidade confirmado!");
+                        alert("Repasse confirmado!");
                         window.location.reload(true);
                     }
                 }
