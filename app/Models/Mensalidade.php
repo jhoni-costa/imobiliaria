@@ -20,6 +20,7 @@ class Mensalidade extends AbstractObj{
     private $anoReferencia;
     private $statusPagamento;
 
+
     /** GETTERS AND SETTERS */
     public function getId(){
         return $this->id;
@@ -69,10 +70,10 @@ class Mensalidade extends AbstractObj{
     public function setAnoReferencia($anoReferencia){
         $this->anoReferencia = $anoReferencia;
     }
-    public function getStatusPagamento($statusPagamento){
-        $this->statusPagamento = $statusPagamento;
-    }
-    public function setStatusPagamento(){
+    public function getStatusPagamento(){
         return $this->statusPagamento;
+    }
+    public function setStatusPagamento($statusPagamento){
+        $this->statusPagamento = $statusPagamento;
     }
 }

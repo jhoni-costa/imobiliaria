@@ -105,4 +105,17 @@ class ImovelController extends AbstractCrud{
     public function delete($id){
         parent::delete("id = {$id}");
     }
+
+    public function isContrato($id){
+        $select = "select ifnull(id,0) as id from tb_contrato where imovel_id = {$id}";
+        // $this->p($select);
+        $result = $this->fetchRow($select);
+        // $this->p($result);
+        if($result['id'] > 0){
+            return false;
+        }else{
+            return true;
+        }
+        
+    }
 }

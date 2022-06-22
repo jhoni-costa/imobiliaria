@@ -19,8 +19,7 @@
     if($id > 0){
         $currentImovel = $controllerImovel->get($id);
         $listaClientes = $controllerCliente->getAll();
-
-        // $controller->pe($listaClientes);
+        $naoTemContrato = $controllerImovel->isContrato($id);
     }
 ?>
 <html>
@@ -78,8 +77,10 @@
                         <div class="mb-3">
                             <button type="submit" class='btn btn-primary btn-sm'>Salvar</button>
                             <button type="button" class='btn btn-warning btn-sm' onclick='voltar()'>Voltar</button>
-                            <?php if($id > 0){?>
+                            <?php if(($id > 0) && ($naoTemContrato)){?>
                                 <button type='button' class='btn btn-success btn-sm' onclick='gerarContrato(<?= $currentImovel->getId(); ?>)'>Gerar Contrato</button>
+                            <?php }elseif($id > 0 && (!$naoTemContrato)){ ?>
+                                <p>Imovel já possui contrato</p>
                             <?php } ?>
                         </div>
                     </form>

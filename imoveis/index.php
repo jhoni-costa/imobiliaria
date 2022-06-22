@@ -28,12 +28,13 @@
                                 <td>Cidade</td>
                                 <td>Estado</td>
                                 <td>Proprietário</td>
+                                <td>Ações</td>
                             </tr>
                         </thead>
                         <tbody>
                             <?php if(count($imoveis) > 0){ ?>
                                 <?php foreach ($imoveis as $key => $value) { ?>
-                                <tr onclick='openForm(<?= $value->getId()?>)'>
+                                <tr>
                                     <td><?= ++$key ?></td>
                                     <td><?= $value->getId()?></td>
                                     <td><?= $value->getRua()?></td>
@@ -42,6 +43,18 @@
                                     <td><?= $value->getCidade()?></td>
                                     <td><?= $value->getEstado()?></td>
                                     <td><?= $value->getProprietario()?></td>
+                                    <td>
+                                        <div class="btn-group" role="group">
+                                            <button id="btnGroupDrop1" type="button" class="btn btn-sm btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Ações
+                                            </button>
+                                            <ul class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                                <li><a class="dropdown-item" href="form.php?id=<?=$value->getId()?>">Ver</a></li>
+                                                <li><a class="dropdown-item" href="../mensalidades/index.php?id=<?=$value->getId()?>">Mensalidades</a></li>
+                                                <li><a class="dropdown-item" href="#">Repasses</a></li>
+                                            </ul>
+                                        </div>
+                                    </td>
                                 </tr>
                                 <?php } ?>
                             <?php }else{ ?>

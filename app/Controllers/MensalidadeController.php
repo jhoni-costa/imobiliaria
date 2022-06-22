@@ -45,21 +45,50 @@ class MensalidadeController extends AbstractCrud{
 
         return $mensalidade;
     }
+    public function getByImovelId($imovelId){
+        $query = "
+                select 
+                        {$this->tableName}.id as mensalidade_id,
+                        {$this->tableName}.* 
+                    from
+                        {$this->tableName} 
+                            inner join tb_contrato on tb_contrato.id = {$this->tableName}.contrato_id
+                    where
+                        tb_contrato.imovel_id = {$imovelId}";
+        
+        $arrayMensalidade = $this->fetchAll($query);
+        // $this->pe($query);
+        $arr = [];
+        foreach($arrayMensalidade as $data){
+            $mensalidade = new Mensalidade();
+            $mensalidade->setId($data['mensalidade_id']);
+            $mensalidade->setContratoId($data['contrato_id']);
+            $mensalidade->setValor($data['valor']);
+            $mensalidade->setDataVencimento($data['data_vencimento']);
+            $mensalidade->setDataPagamento($data['data_pagamento']);
+            $mensalidade->setNumeroParcela($data['numero_parcela']);
+            $mensalidade->setMesReferencia($data['mes_referencia']);
+            $mensalidade->setAnoReferencia($data['ano_referencia']);
+            $mensalidade->setStatusPagamento($data['status_pagamento']);
+            $arr[] = $mensalidade;
+        }
+        return $arr;
+    }
     public function getAll(){
         $query = "select * from {$this->tableName}";
-        $arrClientes = $this->fetchAll($query);
+        $arrayMensalidade = $this->fetchAll($query);
         $arr = [];
-        foreach($arrClientes as $data){
+        foreach($arrayMensalidade as $data){
             $mensalidade = new Mensalidade();
-            $mensalidade->setId($arrayMensalidade['id']);
-            $mensalidade->setContratoId($arrayMensalidade['contrato_id']);
-            $mensalidade->setValor($arrayMensalidade['valor']);
-            $mensalidade->setDataVencimento($arrayMensalidade['data_vencimento']);
-            $mensalidade->setDataPagamento($arrayMensalidade['data_pagamento']);
-            $mensaldiade->setNumeroParcela($arrayMensalidade['numero_parcela']);
-            $mensalidade->setMesReferencia($arrayMensalidade['mes_referencia']);
-            $mensalidade->setAnoReferencia($arrayMensalidade['ano_referencia']);
-            $mensalidade->setStatusPagamento($arrayMensalidade['status_pagamento']);
+            $mensalidade->setId($data['id']);
+            $mensalidade->setContratoId($data['contrato_id']);
+            $mensalidade->setValor($data['valor']);
+            $mensalidade->setDataVencimento($data['data_vencimento']);
+            $mensalidade->setDataPagamento($data['data_pagamento']);
+            $mensalidade->setNumeroParcela($data['numero_parcela']);
+            $mensalidade->setMesReferencia($data['mes_referencia']);
+            $mensalidade->setAnoReferencia($data['ano_referencia']);
+            $mensalidade->setStatusPagamento($data['status_pagamento']);
             $arr[] = $mensalidade;
         }
         return $arr;
@@ -76,6 +105,13 @@ class MensalidadeController extends AbstractCrud{
             "status_pagamento" => $mensalidade->getStatusPagamento()
         ]; 
         return parent::update($arrayMensalidade, "id = {$mensalidade->getId()}");
+    }
+    public function validaPagamento($id){
+        $arrayMensalidade = [
+            "data_pagamento"=> date('Y-m-d'),
+            "status_pagamento" => '1'
+        ]; 
+        return parent::update($arrayMensalidade, "id = {$id}");
     }
 
     public function delete($id){

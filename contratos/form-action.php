@@ -47,7 +47,7 @@ if($id > 0){ // Update
 }
 
 if($id > 0){
-    header("Location: index.php");
+    header("Location: ../imoveis/");
 }else{
     header("Location: form.php");
 }
